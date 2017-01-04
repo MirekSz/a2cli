@@ -1,5 +1,9 @@
 # A2cli
+
 https://yunong.io/2015/11/13/debugging-node-js-in-production/
+https://yunong.io/2015/11/23/generating-node-js-flame-graphs/
+
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.24.
 
 ## Development server

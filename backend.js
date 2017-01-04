@@ -74,14 +74,17 @@ app.delete('/users/:id', function (request, response) {
     users.splice(found, 1);
     response.end();
 });
-
+var i = 0;
 app.get('/stuck', function handleStuckRequest(request, response) {
     ImStuck();
 });
 
 function ImStuck() {
-    while (true) {
+    i++;
+    if (i == 3) {
+        while (true) {
 
+        }
     }
 }
 
