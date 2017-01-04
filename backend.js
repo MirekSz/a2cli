@@ -75,4 +75,14 @@ app.delete('/users/:id', function (request, response) {
     response.end();
 });
 
+app.get('/stuck', function handleStuckRequest(request, response) {
+    ImStuck();
+});
+
+function ImStuck() {
+    while (true) {
+
+    }
+}
+
 
