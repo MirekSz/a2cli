@@ -77,7 +77,26 @@ app.delete('/users/:id', function (request, response) {
 var i = 0;
 app.get('/stuck', function handleStuckRequest(request, response) {
     ImStuck();
+    response.send({res: 'ok'});
 });
+
+app.get('/leak', function handleStuckRequest(request, response) {
+
+    memeoryLeak();
+    response.send({res: 'ok'});
+});
+function memeoryLeak() {
+
+    var li = []
+    var lineReader = require('readline').createInterface({
+        input: require('fs').createReadStream('/home/jenkins.tar')
+    });
+
+    lineReader.on('line', function (line) {
+        li.push(line)
+    });
+}
+
 
 function ImStuck() {
     i++;
