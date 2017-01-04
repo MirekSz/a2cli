@@ -12,6 +12,11 @@ app.listen(3000, function () {
 app.use(bodyParser.json({type: '*/*'}));
 app.use(cors());
 
+process.on('message', function (packet) {
+    if (packet.topic == 'cmd:topic') {
+        console.log('Received packet', packet.data);
+    }
+});
 
 app.use(function (req, res, next) {
     res.header('Cache-Control', 'no-cache');
@@ -77,6 +82,12 @@ app.delete('/users/:id', function (request, response) {
 var i = 0;
 app.get('/stuck', function handleStuckRequest(request, response) {
     ImStuck();
+    process.send({
+        topic: 'cmd:topic',
+        data: {
+            some: 'data'
+        }
+    });
     response.send({res: 'ok'});
 });
 
@@ -85,16 +96,19 @@ app.get('/leak', function handleStuckRequest(request, response) {
     memeoryLeak();
     response.send({res: 'ok'});
 });
+var li = [];
 function memeoryLeak() {
+    i++;
+    li = [];
+    if (i == 3) {
+        var lineReader = require('readline').createInterface({
+            input: require('fs').createReadStream('/home/jenkins.tar')
+        });
 
-    var li = []
-    var lineReader = require('readline').createInterface({
-        input: require('fs').createReadStream('/home/jenkins.tar')
-    });
-
-    lineReader.on('line', function (line) {
-        li.push(line)
-    });
+        lineReader.on('line', function (line) {
+            li.push(line)
+        });
+    }
 }
 
 
@@ -106,5 +120,4 @@ function ImStuck() {
         }
     }
 }
-
 
