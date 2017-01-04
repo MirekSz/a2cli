@@ -1,3 +1,10 @@
-<h1>
-  {{title}}
-</h1>
+<a routerLink="/default" routerLinkActive="active" class="btn">home</a>
+<a routerLink="/users" routerLinkActive="active" class="btn">users</a>
+<a routerLink="/not-found" routerLinkActive="active" class="btn">not found</a>
+
+<div class="container">
+    <h1>
+        {{title}}
+    </h1>
+    <router-outlet></router-outlet>
+</div>
