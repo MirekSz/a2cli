@@ -10,7 +10,11 @@ import {UserService} from "./user.service";
 function validateEmail(c: FormControl) {
     let optionalParams: string = c.value;
 
-    if (!optionalParams || optionalParams.startsWith('M')) {
+    if (!optionalParams) {
+        return null;
+    }
+    let firstUpperLetter = optionalParams.substr(0, 1).toUpperCase();
+    if (optionalParams.substr(0, 1) == firstUpperLetter) {
         return null;
     }
     return {

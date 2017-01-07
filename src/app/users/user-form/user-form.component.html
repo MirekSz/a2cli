@@ -2,10 +2,11 @@
 <div *ngIf="user">
     <p class="description">
         user-form works!
-        {{userAsJSON}}
+        {{user | json}}
     </p>
     <form (ngSubmit)="save()" #heroForm="ngForm">
         <div class="form-group">
+            <input [(ngModel)]="user.birthDate" datetime="yyyy/MM/dd" name="birthDate"/>
             <label for="name">Name</label>
             <input type="text" id="name" class="form-control"
                    required minlength="4" maxlength="24"

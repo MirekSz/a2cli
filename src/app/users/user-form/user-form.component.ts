@@ -24,11 +24,13 @@ export class UserFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log(this.route.params)
         this.route.params.forEach((param) => {
             var id = param['id'];
             this.service.getUsers().flatMap(arr => Observable.from(arr)).find((user) => user.id == id).subscribe((op) => {
                 this.userAsJSON = JSON.stringify(op);
                 this.user = op;
+                this.user.birthDate = new Date()
             });
         });
     }

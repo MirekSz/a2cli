@@ -17,6 +17,7 @@ export class UserListComponent implements OnInit,OnDestroy {
     private byby: Subscription;
     private showDetails: boolean;
     private listener: Subscription;
+    private selectedUser: User;
 
     constructor(private service: UserService,
                 private router: Router) {
@@ -31,12 +32,14 @@ export class UserListComponent implements OnInit,OnDestroy {
     select(user: User) {
         let eventEmitter = new EventEmitter();
         console.log('user: ', user, eventEmitter);
-        this.router.navigate(['/users', user.id, 'details']);
+        this.selectedUser = user;
+        this.router.navigate(['/users', user.id, 'details'], {queryParams: {a: 5}});
     }
 
     ngOnInit() {
         this.listener = this.service.modelChange.subscribe(() => {
             this.readData();
+            this.selectedUser = null;
         });
 
         this.readData();

@@ -12,6 +12,10 @@ export class UserService {
     constructor(private http: Http) {
     }
 
+    siema(): {name: string, age: number, wiek?: number} {
+        return {name: 'a', age: 2, wiek: 33};
+    }
+
     getUsers(): Observable<User[]> {
         // return this.http.get('http://strumyk-next-build:3000/users').flatMap(x => Observable.from(x.json())).zip(Observable.interval(2000)).map((res) => {
         //     return [res[0]];
