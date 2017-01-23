@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
+import { HighlightDirective } from './highlight.directive';
 
 
 @Component({
@@ -34,7 +35,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent, PageNotFoundComponent, HelloComponent
+        AppComponent, PageNotFoundComponent, HelloComponent, HighlightDirective
     ],
     imports: [
         RouterModule.forRoot(appRoutes),
