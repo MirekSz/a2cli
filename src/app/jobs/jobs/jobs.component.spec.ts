@@ -28,7 +28,7 @@ describe('JobsComponent', () => {
     it('should create component2', () => {
         component.name = 'Mirek';
         fixture.detectChanges();
-        
+
         let de = fixture.debugElement.query(By.css('p'));
         let el = de.nativeElement;
 
