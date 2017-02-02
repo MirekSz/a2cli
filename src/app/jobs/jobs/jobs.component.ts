@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Reaction} from "../jobs-details/jobs-details.component";
 
 @Component({
   selector: 'app-jobs',
@@ -8,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class JobsComponent implements OnInit {
   name: string;
 
-  constructor() { }
+  constructor() {
+  }
+
+  apply(event: Reaction) {
+    this.name = event.newValue;
+  }
 
   ngOnInit() {
   }

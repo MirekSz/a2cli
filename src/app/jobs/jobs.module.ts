@@ -1,10 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {JobsComponent} from './jobs/jobs.component';
+import {JobsDetailsComponent} from './jobs-details/jobs-details.component';
 import {RouterModule} from "@angular/router";
-
+import { FormsModule }   from '@angular/forms';
 @NgModule({
     imports: [
+      FormsModule,
         CommonModule, RouterModule.forChild([
             {
                 path: '',
@@ -12,7 +14,7 @@ import {RouterModule} from "@angular/router";
             }
 
         ])],
-    declarations: [JobsComponent]
+    declarations: [JobsComponent,JobsDetailsComponent]
 })
 export class JobsModule {
 }
