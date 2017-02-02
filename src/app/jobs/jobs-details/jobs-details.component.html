@@ -4,7 +4,7 @@
     <button (click)="save()">save</button>
 </p>
 <form [formGroup]="myForm">
-    <div class="form-group">
+    <div class="form-group" [class.has-error]="!myForm.controls.name.valid">
         <label for="">Name</label>
         <input type="text" class="form-control" formControlName="name">
         <small [hidden]="myForm.controls.name.valid || (myForm.controls.name.pristine && !submitted)"
