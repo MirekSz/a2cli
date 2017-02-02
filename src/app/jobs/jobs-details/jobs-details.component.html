@@ -1,0 +1,31 @@
+<p class="title">
+    details {{details}}
+    <input [(ngModel)]="details"/>
+    <button (click)="save()">save</button>
+</p>
+<form [formGroup]="myForm">
+    <div class="form-group">
+        <label for="">Name</label>
+        <input type="text" class="form-control" formControlName="name">
+        <small [hidden]="myForm.controls.name.valid || (myForm.controls.name.pristine && !submitted)"
+               class="text-danger">
+            Name is required (minimum 5 characters).
+        </small>
+        <!--<pre class="margin-20">{{ myForm.controls.name.errors | json }}</pre>-->
+    </div>
+    <div class="form-group">
+        <div formGroupName="address">
+            <label>Address</label>
+            <input type="text" formControlName="street">
+            <small [hidden]="myForm.controls.address.controls.street.valid || (myForm.controls.address.controls.street.pristine && !submitted)">
+                street required
+            </small>
+        </div>
+    </div>
+    <div class="form-group">
+        <div formGroupName="address">
+            <label>Postcode</label>
+            <input type="text" formControlName="postcode">
+        </div>
+    </div>
+</form>

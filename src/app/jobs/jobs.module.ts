@@ -3,10 +3,10 @@ import {CommonModule} from '@angular/common';
 import {JobsComponent} from './jobs/jobs.component';
 import {JobsDetailsComponent} from './jobs-details/jobs-details.component';
 import {RouterModule} from "@angular/router";
-import { FormsModule }   from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 @NgModule({
     imports: [
-      FormsModule,
+        FormsModule, ReactiveFormsModule,
         CommonModule, RouterModule.forChild([
             {
                 path: '',
@@ -14,7 +14,7 @@ import { FormsModule }   from '@angular/forms';
             }
 
         ])],
-    declarations: [JobsComponent,JobsDetailsComponent]
+    declarations: [JobsComponent, JobsDetailsComponent]
 })
 export class JobsModule {
 }
