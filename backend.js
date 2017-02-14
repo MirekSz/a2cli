@@ -3,7 +3,8 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 let cors = require('cors');
-
+var Holidays = require('date-holidays')
+var hd = new Holidays('PL')
 let app = express();
 app.listen(3000, function () {
     console.log('listening on 3000');
@@ -17,7 +18,9 @@ process.on('message', function (packet) {
         console.log('Received packet', packet.data);
     }
 });
-
+//async function mirek() {
+//    return Promise.resolve("a")
+//}
 app.use(function (req, res, next) {
     res.header('Cache-Control', 'no-cache');
     res.header('Access-Control-Allow-Origin', '*');
@@ -25,7 +28,6 @@ app.use(function (req, res, next) {
     res.header('Content-Type', 'application/json');
     next();
 });
-
 class User {
     constructor(id, name, surname, age, sex) {
         this.id = id;
@@ -49,6 +51,9 @@ function generateID() {
     return (maxID + 1);
 }
 
+app.get('/holidays', function (request, response) {
+    response.send(hd.getHolidays(new Date()));
+});
 app.get('/users', function (request, response) {
     response.send(users);
 });
@@ -121,11 +126,15 @@ function ImStuck() {
     }
 }
 
-function run_cmd(cmd, args, callBack ) {
-  var spawn = require('child_process').spawn;
-  var child = spawn(cmd, args);
-  var resp = "";
+function run_cmd(cmd, args, callBack) {
+    var spawn = require('child_process').spawn;
+    var child = spawn(cmd, args);
+    var resp = "";
 
-  child.stdout.on('data', function (buffer) { resp += buffer.toString() });
-  child.stdout.on('end', function() { callBack (resp) });
+    child.stdout.on('data', function (buffer) {
+        resp += buffer.toString()
+    });
+    child.stdout.on('end', function () {
+        callBack(resp)
+    });
 }

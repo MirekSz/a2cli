@@ -8,6 +8,7 @@ import {HighlightDirective} from './highlight.directive';
 import {JobsModule} from "./jobs/jobs.module";
 import {Observable} from "rxjs";
 import {of} from "rxjs/observable/of";
+import {MonthViewModule} from "./month-view/month-view.module";
 
 
 @Component({
@@ -55,6 +56,7 @@ export class CustomPreloadingStrategy implements PreloadingStrategy {
         BrowserModule,
         FormsModule,
         HttpModule,
+        MonthViewModule
     ],
     providers: [CustomPreloadingStrategy],
     bootstrap: [AppComponent]

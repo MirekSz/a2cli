@@ -13,10 +13,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <script src="/assets/kendoui/js/kendo.all.min.js"></script>
+    <script src="/assets/kendoui/js/cultures/kendo.culture.pl-PL.min.js"></script>
+
+    <!-- Common Kendo UI CSS for web and dataviz widgets -->
+    <link href="/assets/kendoui/styles/kendo.common-bootstrap.min.css" rel="stylesheet"/>
+    <!-- Default Kendo UI theme CSS for web and dataviz widgets -->
+    <link href="/assets/kendoui/styles/kendo.bootstrap.min.css" rel="stylesheet"/>
+    <link href="/assets/print.css" rel="stylesheet" media="print"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+<script>
+    $(document).ready(function () {
+        kendo.culture("pl-PL");
+    });
+</script>
 <app-root>Loading...</app-root>
 </body>
 </html>
