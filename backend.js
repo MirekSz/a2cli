@@ -50,7 +50,32 @@ function generateID() {
     });
     return (maxID + 1);
 }
+var PdfPrinter = require('pdfmake/src/printer');
+var fonts = {
+    Roboto: {
+        normal: 'fonts/Roboto-Regular.ttf',
+        bold: 'fonts/Roboto-Medium.ttf',
+        italics: 'fonts/Roboto-Italic.ttf',
+        bolditalics: 'fonts/Roboto-Italic.ttf'
+    }
+};
 
+app.get('/pdf', function (request, response) {
+    var printer = new PdfPrinter(fonts);
+    var dd = {
+        content: [
+            'Another paragraph'
+        ]
+    };
+
+    // Make sure the browser knows this is a PDF.
+    response.set('content-type', 'application/pdf');
+
+    // Create the PDF and pipe it to the response object.
+    var pdfDoc = printer.createPdfKitDocument(dd);
+    pdfDoc.pipe(response);
+    pdfDoc.end();
+});
 app.get('/holidays', function (request, response) {
     response.send(hd.getHolidays(new Date()));
 });

@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+
 export interface Customer {
     name: string; // required field with minimum 5 characters
     addresses: Address[]; // user can have one or more addresses
