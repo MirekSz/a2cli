@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCXBJk5Efgle3OHBwTIYt-CEp049dKniLs",
+            authDomain: "apec-4145e.firebaseapp.com",
+            databaseURL: "https://apec-4145e.firebaseio.com",
+            storageBucket: "apec-4145e.appspot.com",
+            messagingSenderId: "653573934939"
+        };
+        firebase.initializeApp(config);
+
+        var database = firebase.database();
+        var auth = firebase.auth();
+
+        var storage = firebase.storage();
+        var provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider);
+        this.auth.onAuthStateChanged(function (user) {
+            console.log('auth.currentUser: ', user.uid);
+
+            var messagesRef = database.ref('users/' + user.uid);
+
+
+            messagesRef.push({
+                name: 'mirek',
+                text: 'helo',
+                photoUrl: '/images/profile_placeholder.png'
+            }).then(function () {
+            }).catch(function (error) {
+                console.error('Error writing new message to Firebase Database', error);
+            });
+        });
+        // Add a new message entry to the Firebase Database.
+
+    </script>
+</head>
+<body>
+</body>
+</html>
