@@ -1,5 +1,5 @@
 <p class="title">
-  <input [(ngModel)]="name" /> {{name}}
+    <input [(ngModel)]="name"> {{name}}
     jobs works!
-  <job-details [details]="name" (onResult)="apply($event)"></job-details>
+    <job-details [details]="name" (onResult)="apply($event)"></job-details>
 </p>

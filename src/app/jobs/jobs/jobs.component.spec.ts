@@ -1,9 +1,14 @@
 /* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
+import {BrowserModule, By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
 
 import {JobsComponent} from './jobs.component';
+import {JobsDetailsComponent} from '../jobs-details/jobs-details.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
+import {BrowserTestingModule} from "@angular/platform-browser/testing";
+
 
 describe('JobsComponent', () => {
     let component: JobsComponent;
@@ -11,9 +16,9 @@ describe('JobsComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [JobsComponent]
-        })
-            .compileComponents();
+            declarations: [JobsComponent, JobsDetailsComponent],
+            imports: [FormsModule, HttpModule, ReactiveFormsModule]
+        }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -25,7 +30,7 @@ describe('JobsComponent', () => {
     it('should create component', () => {
         expect(component).toBeTruthy();
     });
-    it('should create component2', () => {
+    it('should create component with name', () => {
         component.name = 'Mirek';
         fixture.detectChanges();
 

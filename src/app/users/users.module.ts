@@ -1,4 +1,4 @@
-import {NgModule, Directive, PipeTransform, Pipe} from '@angular/core';
+import {NgModule, Directive, PipeTransform, Pipe, Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {UserListComponent} from './user-list/user-list.component';
 import {UserFormComponent} from './user-form/user-form.component';
@@ -6,6 +6,7 @@ import {HttpModule} from "@angular/http";
 import {FormsModule, NG_VALIDATORS, FormControl} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {UserService} from "./user.service";
+
 
 function validateEmail(c: FormControl) {
     let optionalParams: string = c.value;
@@ -42,6 +43,12 @@ export class ExponentialStrengthPipe implements PipeTransform {
     }
 }
 
+@Component({
+    template: '<h3>Hello</h3>'
+})
+export class HelloComponent {
+}
+
 @NgModule({
     imports: [CommonModule, HttpModule, FormsModule,
         RouterModule.forChild([
@@ -49,7 +56,7 @@ export class ExponentialStrengthPipe implements PipeTransform {
                 path: '',
                 component: UserListComponent,
                 children: [
-                    {path: ':id/details', component: UserFormComponent},
+                    {path: ':id/details', component: UserFormComponent}
                 ]
             },
             {
@@ -59,7 +66,7 @@ export class ExponentialStrengthPipe implements PipeTransform {
             }
 
         ])],
-    declarations: [UserListComponent, UserFormComponent, EmailValidator, ExponentialStrengthPipe],
+    declarations: [UserListComponent, UserFormComponent, EmailValidator, ExponentialStrengthPipe, HelloComponent],
     providers: [UserService]
 })
 export class UsersModule {

@@ -3,8 +3,6 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 let cors = require('cors');
-var Holidays = require('date-holidays')
-var hd = new Holidays('PL')
 let app = express();
 app.listen(3000, function () {
     console.log('listening on 3000');
@@ -12,7 +10,14 @@ app.listen(3000, function () {
 
 app.use(bodyParser.json({type: '*/*'}));
 app.use(cors());
+app.set('json replacer', function (key, value) {
+    if (this[key] instanceof Date) {
+        // Your own custom date serialization
+        value = 'Moj format ' + this[key].toISOString();
+    }
 
+    return value;
+});
 process.on('message', function (packet) {
     if (packet.topic == 'cmd:topic') {
         console.log('Received packet', packet.data);
@@ -50,35 +55,6 @@ function generateID() {
     });
     return (maxID + 1);
 }
-var PdfPrinter = require('pdfmake/src/printer');
-var fonts = {
-    Roboto: {
-        normal: 'fonts/Roboto-Regular.ttf',
-        bold: 'fonts/Roboto-Medium.ttf',
-        italics: 'fonts/Roboto-Italic.ttf',
-        bolditalics: 'fonts/Roboto-Italic.ttf'
-    }
-};
-
-app.get('/pdf', function (request, response) {
-    var printer = new PdfPrinter(fonts);
-    var dd = {
-        content: [
-            'Another paragraph'
-        ]
-    };
-
-    // Make sure the browser knows this is a PDF.
-    response.set('content-type', 'application/pdf');
-
-    // Create the PDF and pipe it to the response object.
-    var pdfDoc = printer.createPdfKitDocument(dd);
-    pdfDoc.pipe(response);
-    pdfDoc.end();
-});
-app.get('/holidays', function (request, response) {
-    response.send(hd.getHolidays(new Date()));
-});
 app.get('/users', function (request, response) {
     response.send(users);
 });
@@ -97,6 +73,10 @@ app.post('/users', function (request, response) {
 
 app.put('/users', function (request, response) {
     let editedUser = request.body;
+    if (editedUser.birthDate) {
+        editedUser.birthDate = new Date(editedUser.birthDate);
+
+    }
     let found = users.find(user => user.id == editedUser.id);
     if (found) {
         Object.assign(found, editedUser);

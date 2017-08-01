@@ -2,21 +2,22 @@ import {Component, OnInit} from '@angular/core';
 import {Reaction} from "../jobs-details/jobs-details.component";
 
 @Component({
-  selector: 'app-jobs',
-  templateUrl: './jobs.component.html',
-  styleUrls: ['./jobs.component.css']
+    selector: 'app-jobs',
+    templateUrl: './jobs.component.html',
+    styleUrls: ['./jobs.component.css']
 })
 export class JobsComponent implements OnInit {
-  name: string;
+    name: string;
 
-  constructor() {
-  }
+    constructor() {
+        this.name = 'demo';
+    }
 
-  apply(event: Reaction) {
-    this.name = event.newValue;
-  }
+    apply(event: Reaction) {
+        this.name = event.newValue;
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

@@ -9,8 +9,8 @@ import {JobsModule} from "./jobs/jobs.module";
 import {Observable} from "rxjs";
 import {of} from "rxjs/observable/of";
 import {MonthViewModule} from "./month-view/month-view.module";
-
-
+import {HeroModule} from "./hero/app.module";
+import {HeroComponent} from "./hero/app.component";
 @Component({
     template: '<h2>Page not found</h2>'
 })
@@ -37,6 +37,10 @@ const appRoutes: Routes = [
         path: 'users',
         loadChildren: 'app/users/users.module#UsersModule'
     },
+    {
+        path: 'hero',
+        component: HeroComponent
+    },
     {path: '**', component: PageNotFoundComponent, data: {notFound: true}}
 ];
 
@@ -56,7 +60,8 @@ export class CustomPreloadingStrategy implements PreloadingStrategy {
         BrowserModule,
         FormsModule,
         HttpModule,
-        MonthViewModule
+        MonthViewModule,
+        HeroModule
     ],
     providers: [CustomPreloadingStrategy],
     bootstrap: [AppComponent]

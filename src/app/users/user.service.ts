@@ -12,7 +12,7 @@ export class UserService {
     constructor(private http: Http) {
     }
 
-    siema(): {name: string, age: number, wiek?: number} {
+    siema(): { name: string, age: number, wiek?: number } {
         return {name: 'a', age: 2, wiek: 33};
     }
 
@@ -20,7 +20,7 @@ export class UserService {
         // return this.http.get('http://strumyk-next-build:3000/users').flatMap(x => Observable.from(x.json())).zip(Observable.interval(2000)).map((res) => {
         //     return [res[0]];
         // })
-        return this.http.get('http://strumyk-next-build:3000/users').map((res) => {
+        return this.http.get('http://strumyk-next-build:3030/users').map((res) => {
             return res.json();
         })
     }

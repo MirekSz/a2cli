@@ -9,7 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent implements OnInit,OnDestroy {
+export class UserListComponent implements OnInit, OnDestroy {
     private count: number = 0;
     private users: User[];
     private as: Observable<User[]>;
@@ -32,6 +32,7 @@ export class UserListComponent implements OnInit,OnDestroy {
     select(user: User) {
         let eventEmitter = new EventEmitter();
         console.log('user: ', user, eventEmitter);
+
         this.selectedUser = user;
         this.router.navigate(['/users', user.id, 'details'], {queryParams: {a: 5}});
     }
